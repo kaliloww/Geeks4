@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Post
 
 def hello(request):
     # mylist  = [1,2,3,4]
@@ -25,16 +26,24 @@ def hello(request):
     return HttpResponse(body, headers=headers, status=300)
 
 def get_index(request):
-
-    # print (request.__dict__)
-    # if request.method == "GET":
-    #     return HttpResponse("Главная страница")
-    # else:
-    #     return HttpResponse("Не тот метод запроса")
-    return render(request, "posts/index.html", context=None)
+    posts = Post.objects.filter(status=True)
+    context = {
+        "title" : "Main page",
+        "posts":posts,
+    }
+    return render(request, "posts/index.html", context=context)
 
 def get_contacts(request):
     return render(request, "posts/contacts.html", context=None)
 
 def get_about(request):
     return render(request, "posts/about.html", context=None)
+
+def get_post(request):
+    return render(request, "posts/post_detail.html", context=None)
+
+def update_post(request):
+    return render(request, "posts/post_update.html", context=None)
+
+def delete_post(request):
+    return render(request, "posts/post_create.html", context=None)
