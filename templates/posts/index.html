@@ -10,19 +10,14 @@
       <h5 class="card-title">{{ post.title }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ post.created }}</h6>
       <p class="card-text">{{ post.content|truncatewords:10 }}</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+      <a href="{% url 'post-detail' post.pk %}" class="card-link">Читать полностью</a>
+      <!-- <a href="{% url 'post-update' post.pk %}" class="card-link">Редактировать</a> -->
     </div>
-  </div>
-        
-    {% endfor %}
+</div>
+         {% endfor %}
     <br>
 
-<a href="{% url 'about-page' %}">Страница о нас</a><br>
-<a href="{% url 'contacts-page' %}">Контакты</a><br>
-<a href="{% url 'get-post' %}">Get post</a><br>
-<a href="{% url 'update-post' %}">update-post</a><br>
-<a href="{% url 'delete-post' %}">delete-post</a>
+    {% include 'posts/includes/links_includes.html' %}
 
-
+<button type="button"><a href="{% url 'post-create' %}">Создать пост</a></button>
 {% endblock %}
