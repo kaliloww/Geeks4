@@ -17,7 +17,15 @@
          {% endfor %}
     <br>
 
+
+    {% if user.is_authenticated %}
+
+
+
+    <a href="{% url 'post-create' %}"><button>Создать пост</button></a><br>
+
+
+    {% endif %}
     {% include 'posts/includes/links_includes.html' %}
 
-<button type="button"><a href="{% url 'post-create' %}">Создать пост</a></button>
 {% endblock %}
